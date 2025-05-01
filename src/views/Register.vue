@@ -1,9 +1,9 @@
 <template>
   <div
-    class="w-full h-screen bg-cover bg-center relative flex items-center justify-center"
+    class="w-full min-h-screen bg-cover bg-center bg-no-repeat flex items-start justify-center pt-24 px-4"
     style="background-image: url('/sawit1.png')"
   >
-    <div class="absolute inset-0 bg-black bg-opacity-30 z-0"></div>
+
 
     <div class="relative z-10 bg-white bg-opacity-90 p-8 rounded-3xl w-full max-w-md shadow-lg">
       <h1 class="text-4xl font-bold text-center mb-6 text-[#134611]">Register</h1>
@@ -23,7 +23,7 @@
           <label class="block text-sm font-semibold mb-1 text-[#134611]">Nomor Telepon</label>
           <input
             type="tel"
-            v-model="phone"
+            v-model="no_phone"
             class="w-full p-3 bg-[#D9D9D9] rounded-3xl outline-none"
             required
           />
@@ -63,24 +63,33 @@
 <script setup>
 import { ref } from 'vue'
 import axios from 'axios'
+import { useRouter } from 'vue-router' 
+
+const router = useRouter() 
 
 const name = ref('')
-const phone = ref('')
+const no_phone = ref('')
 const email = ref('')
 const password = ref('')
+const confirmPassword = ref('')
 
 const submitForm = async () => {
   try {
-    const response = await axios.post('https://127.0.0.1:8000/api/register', {
+    const response = await axios.post('http://127.0.0.1:8000/api/register', {
       name: name.value,
-      phone: phone.value,
+      no_phone: no_phone.value,
       email: email.value,
       password: password.value,
+      password_confirmation: password.value,
+    }, {
+      headers: {
+        'Content-Type': 'application/json',  // pastikan konten yang dikirim sesuai
+      }
     })
 
     console.log('Register sukses:', response.data)
     alert('Registrasi berhasil!')
-    // Redirect atau tindakan lain bisa ditambahkan di sini
+    router.push('/login')
   } catch (error) {
     console.error('Register gagal:', error.response?.data || error.message)
     alert('Terjadi kesalahan saat mendaftar.')

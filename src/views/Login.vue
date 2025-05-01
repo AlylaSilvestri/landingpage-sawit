@@ -48,14 +48,33 @@
   
   <script setup>
   import { ref } from 'vue'
+  import axios from 'axios'
+  import { useRouter } from 'vue-router' 
   
+  const router = useRouter()
+
   const email = ref('')
   const password = ref('')
   
-  const submitLogin = () => {
-    console.log({ email: email.value, password: password.value })
-    // Tambahkan logika submit ke backend/API di sini
+  const submitLogin = async () => {
+  try {
+    const response = await axios.post('http://127.0.0.1:8000/api/login', {
+      email: email.value,
+      password: password.value,
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+
+    console.log('Register sukses:', response.data)
+    alert('login berhasil!')
+    router.push('/landingpage2')
+  } catch (error) {
+    console.error('login gagal:', error.response?.data || error.message)
+    alert('Terjadi kesalahan saat login.')
   }
+}
   </script>
   
   <style scoped>
