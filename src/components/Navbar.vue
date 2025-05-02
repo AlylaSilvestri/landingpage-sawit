@@ -20,22 +20,18 @@
             <router-link to="/" class="nav-link">Menu</router-link>  <!-- Mengarah ke Dashboard (LandingPage) -->
           </li>
           <li>
-            <router-link to="/landingpage2" class="nav-link">Landing Page 2</router-link>  <!-- Mengarah ke LandingPage2 -->
-          </li>
-          <li>
-            <router-link to="/login" class="nav-link">Login</router-link>  <!-- Mengarah ke halaman login -->
-          </li>
-          <li>
-            <router-link to="/register" class="nav-link">Register</router-link>  <!-- Mengarah ke halaman register -->
+            <router-link to="/landingpage2" class="nav-link">Tentang Kami</router-link>  <!-- Mengarah ke LandingPage2 -->
           </li>
         </ul>
-        <!-- Tombol Sign In / Up -->
-        <router-link to="/login">
-          <button class="auth-btn">Sign In</button>
-        </router-link>
-        <router-link to="/register">
-          <button class="auth-btn">Sign Up</button>
-        </router-link>
+        <!-- Tombol Sign In / Sign Up -->
+        <div class="auth-buttons">
+          <router-link to="/login">
+            <button class="auth-btn">Sign In</button>  <!-- Tombol Sign In -->
+          </router-link>
+          <router-link to="/register">
+            <button class="auth-btn">Sign Up</button>  <!-- Tombol Sign Up -->
+          </router-link>
+        </div>
       </div>
     </nav>
   </div>
@@ -138,17 +134,30 @@
   color: #d1fae5;
 }
 
+.auth-buttons {
+  display: flex;
+  gap: 16px;
+}
+
 .auth-btn {
-  background-color: white;
-  color: #134611;
+  background-color: white;  /* Warna latar belakang putih */
+  color: #134611;  /* Teks hijau */
   font-weight: 600;
-  padding: 0.5rem 1rem;
-  border-radius: 9999px;
-  transition: all 0.3s;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #134611;  /* Border hijau */
+  border-radius: 50px;
+  transition: all 0.2s ease-in-out;  /* Animasi lebih halus */
+  position: relative;
 }
 
 .auth-btn:hover {
-  transform: scale(1.05);
-  background-color: #f3f4f6;
+  color: white;  /* Teks putih saat hover */
+  background-color: #134611;  /* Warna latar belakang hijau saat hover */
+  transform: scale(1.05);  /* Sedikit perbesaran */
+}
+
+.auth-btn span {
+  position: relative;
+  z-index: 1;
 }
 </style>
