@@ -17,7 +17,7 @@
         <!-- Menu Navigasi -->
         <ul class="nav-links">
           <li>
-            <router-link to="/" class="nav-link">Menu</router-link>  <!-- Mengarah ke Dashboard (LandingPage) -->
+            <router-link to="/" class="nav-link">Beranda</router-link>  <!-- Mengarah ke Dashboard (LandingPage) -->
           </li>
           <li>
             <router-link to="/landingpage2" class="nav-link">Tentang Kami</router-link>  <!-- Mengarah ke LandingPage2 -->
